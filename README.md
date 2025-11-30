@@ -66,6 +66,8 @@ sudo apt install nginx -y
 sudo systemctl enable nginx
 sudo systemctl start nginx
 
+---
+
 ### 3. Deploy Anime Portfolio Page
 
 ```bash
@@ -78,6 +80,8 @@ sudo nano /var/www/html/index.html
 
 # Reload Nginx after saving the file
 sudo systemctl reload nginx
+
+---
 
 ### 4. Test the Website
 
