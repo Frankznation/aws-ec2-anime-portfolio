@@ -43,35 +43,47 @@ cloud infrastructure, Linux, and web servers.
 
 ## 🚀 Deployment Steps (Summary)
 
-1. **Launch EC2 instance**
-   - AMI: Ubuntu Server 22.04 LTS
-   - Type: `t2.micro` (free tier)
-   - Created key pair (`.pem`) and downloaded it
-   - Security group:
-     - SSH (22) from my IP
-     - HTTP (80) from `0.0.0.0/0`
+### 1. Launch EC2 instance
+- AMI: **Ubuntu Server 22.04 LTS**  
+- Instance type: **t2.micro** (free tier)  
+- Created key pair (`.pem`)  
+- Security Group rules:
+  - SSH (22) — from my IP  
+  - HTTP (80) — open to the world (`0.0.0.0/0`)
 
-2. **Connect via SSH**
+---
 
-   ```bash
-   chmod 400 frank-key.pem
-   ssh -i frank-key.pem ubuntu@13.60.166.204
+### 2. Connect via SSH + Install & Start Nginx
 
-   3.	Install & start Nginx
+```bash
+# Connect to EC2
+chmod 400 frank-key.pem
+ssh -i frank-key.pem ubuntu@13.60.166.204
+
+# Install & start Nginx
 sudo apt update -y
 sudo apt install nginx -y
 sudo systemctl enable nginx
 sudo systemctl start nginx
 
-4.	Deploy anime portfolio page
-	•	Opened the default web root:
+### 3. Deploy Anime Portfolio Page
+
+```bash
+# Open the default web root file
 sudo nano /var/www/html/index.html
 
-Paste your HTML → save (CTRL + O, Enter) → exit (CTRL + X)
+# Paste your Anime HTML manually
+# Save with: CTRL + O, ENTER
+# Exit with: CTRL + X
 
-Reload Nginx:
+# Reload Nginx after saving the file
 sudo systemctl reload nginx
 
-5.	Test
-	•	Opened http://13.60.166.204 in a browser.
-	•	Verified the live anime-themed portfolio.
+### 4. Test the Website
+
+```bash
+# Open your website in the browser
+# http://13.60.166.204
+
+# Optional: Verify Nginx is running correctly
+sudo systemctl status nginx
